@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Find Nearby Pet Stores</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+    }
+
+    h1 {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 2em;
+      color: #333;
+    }
+
+    #findStores {
+      display: block;
+      margin: 20px auto;
+      padding: 10px 20px;
+      font-size: 1.2em;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    #findStores:hover {
+      background-color: #45a049;
+    }
+
+    #map {
+      height: 500px;
+      width: 80%;
+      margin: 20px auto;
+      border: 2px solid #ddd;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+  </style>
+</head>
+<body>
+  <h1>Nearby Pet Stores</h1>
+  <button id="findStores">Find Nearby Pet Stores</button>
+  <div id="map"></div>
+</body>
+
+
+  <script>
+    // Initialize map
+    const map = L.map('map').setView([51.505, -0.09], 13); // Default to London
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19,
+      attribution: '© OpenStreetMap contributors',
+    }).addTo(map);
+
+    // Get user's location and update the map center
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const { latitude, longitude } = position.coords;
+          const userLocation = [latitude, longitude];
+          map.setView(userLocation, 13);
+
+          // Add a marker for the user's location
+          L.marker(userLocation).addTo(map).bindPopup('You are here').openPopup();
+        },
+        (error) => {
+          alert('Error fetching your location: ' + error.message);
+        }
+      );
+    } else {
+      alert('Geolocation is not supported by your browser.');
+    }
+
+    // Function to query nearby pet stores using Overpass API
+    function findNearbyStores() {
+      const bounds = map.getBounds();
+      const query = `
+        [out:json];
+        (
+          node["shop"="pet"](${bounds.getSouth()},${bounds.getWest()},${bounds.getNorth()},${bounds.getEast()});
+        );
+        out body;
+      `;
+      const url = `https://overpass-api.de/api/interpreter?data=${encodeURIComponent(query)}`;
+
+      fetch(url)
+        .then((response) => response.json())
+        .then((data) => {
+          data.elements.forEach((element) => {
+            const lat = element.lat;
+            const lon = element.lon;
+            const name = element.tags.name || 'Unnamed Pet Store';
+
+            // Add markers for pet stores
+            L.marker([lat, lon]).addTo(map).bindPopup(name);
+          });
+        })
+        .catch((error) => {
+          console.error('Error querying Overpass API:', error);
+          alert('Error finding pet stores. Please try again.');
+        });
+    }
+
+    // Add event listener to the "Find Nearby Pet Stores" button
+    document.getElementById('findStores').addEventListener('click', findNearbyStores);
+  </script>
+</body>
+</html>
