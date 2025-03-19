@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PetTube</title>
+    <link rel="stylesheet" href="explore.css">
+    <script defer src="explore.js"></script>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="logo">MyYouTube</div>
+        <div class="search-bar">
+            <input type="text" placeholder="Search" id="searchInput">
+            <button id="searchButton">Search</button>
+        </div>
+        <div class="profile-menu">
+            <img src="assets/logo-dark.png" alt="Profile" class="profile-icon">
+        </div>
+    </header>
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <ul>
+          <li onclick="scrollToSection('hardware-interface')">
+              <div class="sidebar__card">
+                  <h4>Hardware Interface</h4>
+              </div>
+          </li>
+          <li onclick="scrollToSection('tricks-commands')">
+              <div class="sidebar__card">
+                  <h4>Tricks & Commands</h4>
+              </div>
+          </li>
+          <li onclick="location.href='index.html'">
+              <div class="sidebar__card">
+                  <h4>Home</h4>
+              </div>
+          </li>
+      </ul>
+  </aside>
+  
+    <!-- Main Content -->
+    <main class="main-content">
+      <section id="hardware-interface">
+          <h2>Hardware Interface</h2>
+          <div class="video-grid">
+              <!-- Video Card -->
+             <!-- Video Card -->
+             <div id="video1" class="video-card">
+              <img src="assets/pindiag.jpg" alt="Thumbnail" class="thumbnail">
+              <h3 class="video-title">Hardware Component</h3>
+              <p class="video-info">Hardware Interface of Project</p>
+            </div>
+
+             <!-- Video Cards -->
+              <div id="video2" class="video-card">
+                  <img src="assets/diag.jpg" alt="Thumbnail" class="thumbnail">
+                  <h3 class="video-title">Hardware Integration</h3>
+                  <p class="video-info">Integration of Software & Hardware</p>
+              </div>
+
+                <div id="video3" class="video-card">
+                  <img src="assets/diag2.jpg" alt="Thumbnail" class="thumbnail">
+                  <h3 class="video-title">Hardware Video Explanation</h3>
+                  <p class="video-info">Working of Hardware </p>
+                </div>
+
+
+
+          </div>
+      </section>
+  
+      <section id="tricks-commands">
+          <h2>Tricks & Commands</h2>
+          <div class="video-grid">
+              <div id="video4" class="video-card">
+                  <img src="assets/video4.jpg" alt="Thumbnail" class="thumbnail">
+                  <h3 class="video-title">How to Teach Your Dog to Spin | Dog Tricks</h3>
+                  <p class="video-info">Howcast &#8226; 362K views</p>
+              </div>
+              <div id="video5" class="video-card">
+                <img src="assets/video5.jpg" alt="Thumbnail" class="thumbnail">
+                <h3 class="video-title">7 Dog Tricks in 5 Minutes!</h3>
+                <p class="video-info">ZAK DOG &#8226; 800K views </p>
+            </div>
+            <div id="video6" class="video-card">
+              <img src="assets/video6.jpg" alt="Thumbnail" class="thumbnail">
+              <h3 class="video-title">How to Teach Your Dog Scent Detection</h3>
+              <p class="video-info">NATE &#8226; 441K views </p>
+          </div>
+          </div>
+      </section>
+  </main>
+  
+
+</body>
+</html>

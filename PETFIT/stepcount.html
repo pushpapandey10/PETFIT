@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Step Counter</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+            overflow: hidden;
+        }
+        #background-video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover; /* Ensures the video fills the screen without distortion */
+            z-index: -1; /* Places it behind other content */
+        }
+
+
+        .step-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            
+            animation: breathe 2s infinite alternate;
+            z-index: -1;
+        }
+
+        @keyframes breathe {
+            from { opacity: 0.7; }
+            to { opacity: 1; }
+        }
+
+        /* Container div styling */
+        .container-div {
+            width: 300px; /* Increased size */
+            height: 180px; /* Adjusted height */
+            background-color: #D9C6B0; /* Light beige background */
+            border-radius: 15px; /* Rounded corners */
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2); /* Shadow effect */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+            transition: all 0.3s ease;
+        }
+
+        /* Text inside the div */
+        .container-div p {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #5C4033; /* Dark brown text */
+            margin-bottom: 15px;
+        }
+
+        /* Button styling */
+        .step-btn {
+            font-size: 1.5rem;
+            padding: 20px 40px;
+            background-color: #A27B5C;
+            border: 3px solid white;
+            color: white;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        /* Hover effect */
+        .step-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+        }
+
+    </style>
+</head>
+<body>
+    <!-- Background Video -->
+    <video id="background-video" autoplay muted loop>
+        <source src="assets/dogwalk.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+
+    <div class="step-background"></div>
+    <div id="containerDiv" class="container-div">
+        <p>Step Counter</p>
+        <button id="stepBtn" class="step-btn">Start Counting Steps</button>
+    </div>
+    
+    <script>
+        const stepBtn = document.getElementById('stepBtn');
+        let steps = 0;
+
+        stepBtn.addEventListener('click', function() {
+            steps += Math.floor(Math.random() * 50) + 10;
+            stepBtn.textContent = ` Steps: ${steps}`;
+        });
+    </script>
+</body>
+</html>

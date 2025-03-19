@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dog Pet Sign-In Form</title>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start; /* Align the form at the top */
+      min-height: 100vh; /* Use `min-height` instead of `height` */
+      margin: 0;
+      padding: 2rem 0; /* Add some space around the form */
+    }
+
+    .form-container {
+      background-color: white;
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 500px; /* Optional: Set a max-width for the form */
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+
+    .form-group {
+      margin-bottom: 1rem;
+    }
+
+    label {
+      font-weight: bold;
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 1rem;
+    }
+
+    button {
+      width: 100%;
+      padding: 0.75rem;
+      background-color: #56ca71;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 1.2rem;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #72de8b;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <h2>Dog Pet Sign-In</h2>
+    <form id="dog-sign-in-form">
+      <!-- Dog Information -->
+      <div class="form-group">
+        <label for="dogName">Dog's Name</label>
+        <input type="text" id="dogName" name="dogName" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="dogBreed">Breed</label>
+        <input type="text" id="dogBreed" name="dogBreed" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="dogAge">Age (in years)</label>
+        <input type="number" id="dogAge" name="dogAge" min="0" required>
+      </div>
+      
+      <!-- Owner Information -->
+      <div class="form-group">
+        <label for="ownerName">Owner's Name</label>
+        <input type="text" id="ownerName" name="ownerName" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="ownerEmail">Owner's Email</label>
+        <input type="email" id="ownerEmail" name="ownerEmail" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="ownerPhone">Owner's Phone Number</label>
+        <input type="tel" id="ownerPhone" name="ownerPhone" required>
+      </div>
+
+      <div class="form-group">
+        <label for="dogHealth">Health Status</label>
+        <select id="dogHealth" name="dogHealth" required>
+          <option value="healthy">Healthy</option>
+          <option value="sick">Sick</option>
+          <option value="vaccinated">Vaccinated</option>
+        </select>
+      </div>
+      
+      <button type="submit">Sign Up</button>
+    </form>
+  </div>
+</body>
+</html>

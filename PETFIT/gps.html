@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>GPS Location Tracker</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #e6f2ff;
+            overflow: hidden;
+        }
+        #background-video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover; /* Ensures the video fills the screen without distortion */
+            z-index: -1; /* Places it behind other content */
+        }
+
+        .gps-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            animation: wave 5s infinite alternate;
+            z-index: -1;
+        }
+
+        @keyframes wave {
+            from { opacity: 0.7; transform: scale(1); }
+            to { opacity: 1; transform: scale(1.02); }
+        }
+        /* Text inside the div */
+        .container-div {
+            width: 300px; /* Increased size */
+            height: 180px; /* Adjusted height */
+            background-color: #CAE0BC; /* Light beige background */
+            border-radius: 15px; /* Rounded corners */
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2); /* Shadow effect */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+            transition: all 0.3s ease;
+        }
+        /* Text inside the div */
+        .container-div p {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #6E8E59; /* Dark brown text */
+            margin-bottom: 15px;
+        }
+
+        /* Button styling */
+        .gps-btn {
+            font-size: 1rem;
+            padding: 20px 40px;
+            background-color: #6E8E59;
+            border: 3px solid white;
+            color: white;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        /* Hover effect */
+        .gps-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <!-- Background Video -->
+    <video id="background-video" autoplay muted loop>
+        <source src="assets/location.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+    </video>
+
+    <div class="gps-background"></div>
+    <div id="containerDiv" class="container-div">
+        <p>Location Tracker</p>
+        <button id="gpsBtn" class="gps-btn">Track Location</button>
+    </div>
+
+    <script>
+        const gpsBtn = document.getElementById('gpsBtn');
+
+        function generateLocations(count = 4) {
+            const locations = [
+                { latitude: 12.9412331, longitude: 77.5655751 },
+                { latitude: 13.0144763, longitude: 78.4343445 },
+                { latitude: 12.75457487, longitude: 77.35745845 },
+                { latitude: 12.8895843, longitude: 76.9832837 }
+            ];
+            return locations.slice(0, count);
+        }
+
+        gpsBtn.addEventListener('click', function() {
+            const locations = generateLocations();
+            const randomLocation = locations[Math.floor(Math.random() * locations.length)]; // Pick a random location
+            gpsBtn.textContent = `📍 Lat: ${randomLocation.latitude}° Lon: ${randomLocation.longitude}°`;
+        });
+    </script>
+
+</body>
+</html>
